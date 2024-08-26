@@ -1,3 +1,7 @@
+import (aleatorio) from './aleatorio.js;'
+import (perguntas) from './aleatorio.js;'
+
+
 const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
@@ -103,8 +107,5 @@ function mostraResultado(){
     caixaAlternativas.textContent = ""; 
 }
 
-function aleatorio (lista){
-    const posicao = Math.floor(Math.random()* lista.lenght);
-    return lista[posicao];
-}
+
 mostraPergunta();
