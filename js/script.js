@@ -1,16 +1,30 @@
-import (aleatorio, nome) from './aleatorio.js;'
-import (perguntas) from './aleatorio.js;'
+import {aleatorio, nome} from './aleatorio.js';
+import {perguntas} from './perguntas.js';
 
 const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
-const BotaoJogarNovamente = document.querySelector("novamente=btn");
+const botaoJogarNovamente = document.querySelector(".novamente-btn"); 
+const botaoIniciar = document.querySelector(".iniciar-btn");
+const telaInicial = document.querySelector(".tela-inicial");
 
 let atual = 0; 
 let perguntaAtual;
 let historiaFinal = "";
+
+botaoIniciar.addEventListener('click', iniciaJogo);
+
+function iniciaJogo() {
+    atual = 0;
+    historiaFinal = "";
+    telaInicial.style.display = 'none';
+    caixaPerguntas.classList.remove("mostrar");
+    caixaAlternativas.classList.remove("mostrar");
+    caixaResultado.classList.remove("mostrar");
+    mostraPergunta();
+}
 
 function mostraPergunta() {
     if(atual >= perguntas.length){
@@ -33,32 +47,30 @@ function mostraAlternativas(){
 }
 
 function respostaSelecionada(opcaoSelecionada){
-    const afirmacoes = aleatoria(opcaoSelecionada.afirmacao);
+    const afirmacoes = aleatorio(opcaoSelecionada.afirmacao);
     historiaFinal += afirmacoes + " ";
     atual++;
     mostraPergunta();
 }
 
 function mostraResultado(){
-    caixaPerguntas.textContent = ` em 2049, &{nome}` 
+    caixaPerguntas.textContent = `Em 2049, &{nome}`/*add 12/09*/
     textoResultado.textContent = historiaFinal;
-    caixaAlternativas.textContent = ""; 
-    caixaResultado.classList.add("mostrar");
-    botaoJogarNovamente.addEventListener("click", jogarnovamente());
+    caixaAlternativas.textContent = "";
+    caixaResultado.classList.add("mostrar"); 
+    botaoJogarNovamente.addEventListener("click", jogarNovamente); 
 }
 
 function jogarNovamente(){
-    atual= 0;
+    atual = 0;
     historiaFinal = "";
-    caixaResultado.classList.remove("mostrar");
+    caixaResultado.classList.remove("mostrar"); 
     mostraPergunta();
 }
 
 function substituiNome() {
     for(const pergunta of perguntas) {
-        prgunta.enunciado = pergunta. enunciado. replace(/você/g, nome);
+        pergunta.enunciado = pergunta.enunciado.replace(/você/g, nome);
     }
 }
-substituiNOme();
-mostraPergunta();
-};
+substituiNome();
